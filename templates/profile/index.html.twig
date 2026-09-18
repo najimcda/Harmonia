@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>Mon profil</h1>
+
+    <div class="example-wrapper">
+        <h1>Hello {{ user.nickName }}!</h1>
+
+        <p><strong>Pseudo :</strong> {{ user.nickName }}</p>
+        <p><strong>Email :</strong> {{ user.email }}</p>
+        <p><strong>Membre depuis :</strong> {{ user.createdAt|date('d/m/Y') }}</p>
+
+        <p><strong>Mes favoris</strong></p>
+        <ul class="list-group">
+            {% for favorite in user.favorite %}
+                <li class="list-group-item">{{ favorite.name }}</li>
+            {% endfor %}
+        </ul>
+
+        <p><strong>Mon historique</strong></p>
+        <ul class="list-group">
+            {% for history in user.histories %}
+                <li class="list-group-item">{{ history.name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="{{ path('app_home') }}" class="btn btn-secondary mb-3">Retour</a>
+</div>
+{% endblock %}

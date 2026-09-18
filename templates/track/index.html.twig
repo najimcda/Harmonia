@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Toutes les musiques{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>Musiques</h1>
+
+    <div class="row">
+        {% for track in tracks %}
+            <div class="col-6 col-md-3 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ track.name }}</h5>
+                        <p><strong>Créée le : </strong> {{ track.createdAt|date('d/m/Y') }}</p>
+                        <p><strong>Durée : </strong> {{ track.duration}}</p>
+                        <p><strong>Album : </strong> {{ track.album.titre}}</p>
+                        <p><strong>Genres : </strong>
+                        {% for genre in track.genres %}
+                        <span class="badge bg-secondary">{{ genre.name }}</span>
+                        {% endfor %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <a href="{{ path('app_home') }}" class="btn btn-secondary mb-3">Retour</a>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ album.titre }}{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <a href="{{ path('app_home') }}" class="btn btn-secondary mb-3">&larr; Retour</a>
+
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{ asset(album.jacket) }}" class="img-fluid rounded" alt="{{ album.titre }}">
+        </div>
+        <div class="col-md-8">
+            <h1>{{ album.titre }}</h1>
+            <span class="badge bg-secondary mb-3">{{ album.type }}</span>
+
+            <p><strong>Artiste :</strong> {{ album.artist.name }}</p>
+            <p><strong>Durée :</strong> {{ album.duration }} sec</p>
+            <p><strong>Nombre de pistes :</strong> {{ album.pistNumber }}</p>
+            <p><strong>Explicite :</strong> {{ album.isExplicit ? 'Oui' : 'Non' }}</p>
+            <p><strong>Créé le :</strong> {{ album.createdAt|date('d/m/Y') }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
