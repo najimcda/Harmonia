@@ -4,8 +4,6 @@ namespace App\Form;
 
 use App\Entity\Album;
 use App\Entity\Genre;
-use App\Entity\History;
-use App\Entity\Playlist;
 use App\Entity\Track;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -21,16 +19,12 @@ class TrackType extends AbstractType
             ->add('duration')
             ->add('album', EntityType::class, [
                 'class' => Album::class,
-                'choice_label' => 'id',
+                'choice_label' => 'titre',
             ])
             ->add('genres', EntityType::class, [
                 'class' => Genre::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
                 'multiple' => true,
-            ])
-            ->add('history', EntityType::class, [
-                'class' => History::class,
-                'choice_label' => 'id',
             ])
         ;
     }

@@ -39,8 +39,7 @@ class Track
     #[ORM\ManyToMany(targetEntity: Genre::class, mappedBy: 'tracks')]
     private Collection $genres;
 
-    #[ORM\ManyToOne(inversedBy: 'tracks')]
-    private ?History $history = null;
+    
 
     /**
      * @var Collection<int, Favorite>
@@ -48,11 +47,18 @@ class Track
     #[ORM\OneToMany(targetEntity: Favorite::class, mappedBy: 'track')]
     private Collection $favorites;
 
+    /**
+     * @var Collection<int, History>
+     */
+    #[ORM\OneToMany(targetEntity: History::class, mappedBy: 'track')]
+    private Collection $histories;
+
     public function __construct()
     {
         $this->playlists = new ArrayCollection();
         $this->genres = new ArrayCollection();
         $this->favorites = new ArrayCollection();
+        $this->histories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -159,17 +165,7 @@ class Track
         return $this;
     }
 
-    public function getHistory(): ?History
-    {
-        return $this->history;
-    }
-
-    public function setHistory(?History $history): static
-    {
-        $this->history = $history;
-
-        return $this;
-    }
+    
 
     /**
      * @return Collection<int, Favorite>
@@ -195,6 +191,36 @@ class Track
             // set the owning side to null (unless already changed)
             if ($favorite->getTrack() === $this) {
                 $favorite->setTrack(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, History>
+     */
+    public function getHistories(): Collection
+    {
+        return $this->histories;
+    }
+
+    public function addHistory(History $history): static
+    {
+        if (!$this->histories->contains($history)) {
+            $this->histories->add($history);
+            $history->setTrack($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHistory(History $history): static
+    {
+        if ($this->histories->removeElement($history)) {
+            // set the owning side to null (unless already changed)
+            if ($history->getTrack() === $this) {
+                $history->setTrack(null);
             }
         }
 

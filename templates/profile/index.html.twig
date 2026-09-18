@@ -23,7 +23,7 @@
         <p><strong>Mon historique</strong></p>
         <ul class="list-group">
             {% for history in user.histories %}
-                <li class="list-group-item">{{ history.name }}</li>
+                <li class="list-group-item">{{ history.track.name }}</li>
             {% endfor %}
         </ul>
     </div>

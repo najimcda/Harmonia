@@ -32,7 +32,6 @@ final class TrackFactory extends PersistentObjectFactory
     {
         return [
             'album' => AlbumFactory::random(),
-            'history' => HistoryFactory::new(),
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
             'duration' => self::faker()->randomNumber(),
             'name' => self::faker()->text(30),
