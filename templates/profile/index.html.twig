@@ -16,7 +16,7 @@
         <p><strong>Mes favoris</strong></p>
         <ul class="list-group">
             {% for favorite in user.favorite %}
-                <li class="list-group-item">{{ favorite.name }}</li>
+                <li class="list-group-item">{{ favorite.track.name }}</li>
             {% endfor %}
         </ul>
 

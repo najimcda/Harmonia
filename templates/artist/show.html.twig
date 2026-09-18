@@ -5,7 +5,8 @@
 {% block body %}
 <div class="container mt-4">
     <a href="{{ path('app_artist') }}" class="btn btn-secondary mb-3">Retour</a>
-    <a href="{{ path('app_artist_edit', {id: artist.id}) }}" class="btn btn-primary mb-3">Modifier</a>
+<a href="{{ path('app_artist_edit', {id: artist.id}) }}" class="btn btn-primary mb-3">Modifier</a>
+<a href="{{ path('app_album_item', {artist_id: artist.id}) }}" class="btn btn-success mb-3">+ Ajouter un album</a>
 
     <h1>{{ artist.name }}</h1>
     <span class="badge bg-secondary mb-3">{{ artist.type }}</span>

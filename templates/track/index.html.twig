@@ -20,6 +20,12 @@
                         <span class="badge bg-secondary">{{ genre.name }}</span>
                         {% endfor %}
                         </p>
+
+                        {% if app.user %}
+                            <a href="{{ path('app_favorite', {id: track.id}) }}" class="btn btn-outline-danger btn-sm">
+                                Ajouter aux favoris
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
